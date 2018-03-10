@@ -15,4 +15,4 @@ app.get('/', (req, res)=>{res.send('home page..')})
 app.use('/auth', authRoutes);
 
 const port = process.env.PORT || 5000;
-app.listen(port, 'localhost', () => console.log(`Server started on port ${port}`))
+app.listen(port, () => console.log(`Server started on port ${port}`))

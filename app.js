@@ -7,4 +7,4 @@ const app = express();
 app.get('/', (req, res)=>{res.send('home page..')})
 
 
-app.listen(port, 'localhost', ()=>console.log(`Server started on port ${port}`))
+app.listen(port, 'localhost', () => console.log(`Server started on port ${port}`))

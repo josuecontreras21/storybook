@@ -12,7 +12,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 
 //Use Routes
-app.get('/', (req, res)=>{res.send('home page..')})
+app.get('/', (req, res)=>{res.send('Hello World!')})
 app.use('/auth', authRoutes);
 
 const port = process.env.PORT || 5000;

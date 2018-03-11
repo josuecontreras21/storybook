@@ -1,9 +1,7 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const keys = require('./keys');
-
-
-
+//radom comment
 module.exports = function(passport){
     passport.use(new GoogleStrategy({
         clientID: keys.googleClientID,

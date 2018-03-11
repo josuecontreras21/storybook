@@ -7,9 +7,8 @@ module.exports = (passport) => {
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback',
-    proxy: true,
   },
-    (accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, callback) => {
       console.log(accessToken);
       console.log(profile);
       // User.findOrCreate({ googleId: profile.id }, function (err, user) {

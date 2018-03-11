@@ -9,7 +9,7 @@ router.get('/google/callback',
     (req, res) => {
         // Successful authentication, redirect home.
         res.redirect('/dashboard');
-    });
-
+    }
+);
 
 module.exports = router;

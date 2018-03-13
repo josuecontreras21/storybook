@@ -1,0 +1,17 @@
+<nav class="grey darken-3">
+    <div class="container">
+        <div class="navwrapper">
+            <a href="/stories" class="brand-logo center"> StoryBooks</a>
+            <a href="#" data-actives="main-menu" class="button-collapse show-on-large"><i class="fas fa-bars"></i></a>
+            <!--RIGHT NAV -->
+            <ul class="right hide-on-small-only">
+                {{#if currentUser}}
+                    <li><a href="/dashboard">Welcome {{currentUser.firstName}}</a></li>
+                    <li><a href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                {{else}}
+                    <li><a href="/stories"><i class="fas fa-book"></i> Public stories</a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>

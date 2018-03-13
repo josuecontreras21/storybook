@@ -1,13 +1,20 @@
-const express = require('express');
 const expressSession = require('express-session');
+const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const mongoose = require('mongoose');
 const passport = require('passport');
+const express = require('express');
+
 //Load Routes 
+const indexRoutes = require('./routes');
 const authRoutes = require('./routes/auth');
 
 const app = express();
+
+// Handlebars middleware
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 //Map global promises
 mongoose.Promise = Promise;
@@ -46,7 +53,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 //Use Routes
-app.get('/', (req, res) => { res.send('Hello World!') });
+app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 
 const port = process.env.PORT || 5000;

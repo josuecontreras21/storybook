@@ -11,6 +11,7 @@ const env = require('./config/env');
 //Load Routes 
 const indexRoutes = require('./routes');
 const authRoutes = require('./routes/auth');
+const storiesRoutes = require('./routes/stories');
 
 const app = express();
 
@@ -18,7 +19,7 @@ const app = express();
 mongoose.Promise = Promise;
 
 //Mongoose Connect
-mongoose.connect(keys.mongo.URI)
+mongoose.connect(env.mongo.URI)
     .then(() => console.log('Connected to DB...'))
     .catch(err => console.log(err));
 mongoose.set('debug', true);
@@ -65,6 +66,8 @@ app.use((req, res, next) => {
 //Use Routes
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
+app.use('/stories', storiesRoutes);
+
 
 
 app.listen(env.PORT, () => console.log(`Server started on port ${env.PORT}`));

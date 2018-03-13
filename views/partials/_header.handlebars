@@ -1,15 +1,56 @@
 <nav class="grey darken-3">
     <div class="container">
         <div class="navwrapper">
-            <a href="/stories" class="brand-logo center"> StoryBooks</a>
-            <a href="#" data-actives="main-menu" class="button-collapse show-on-large"><i class="fas fa-bars"></i></a>
+            <a href="/" class="brand-logo center"> StoryBooks</a>
+            <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
+                <i class="fas fa-bars"></i>
+            </a>
             <!--RIGHT NAV -->
             <ul class="right hide-on-small-only">
                 {{#if currentUser}}
-                    <li><a href="/dashboard">Welcome {{currentUser.firstName}}</a></li>
-                    <li><a href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li>
+                    <a href="/dashboard">Welcome {{currentUser.firstName}}</a>
+                </li>
+                <li>
+                    <a href="/auth/logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
                 {{else}}
-                    <li><a href="/stories"><i class="fas fa-book"></i> Public stories</a></li>
+                <li>
+                    <a href="/stories">
+                        <i class="fas fa-book"></i> Public stories</a>
+                </li>
+                {{/if}}
+            </ul>
+            <!--SIDE NAV -->
+
+            <ul id="slide-out" class="side-nav">
+               <li>
+                    <a href="/"><i class="fas fa-home"></i> Home</a>
+                </li>
+                
+                <li>
+                    <a href="/stories"><i class="fas fa-book"></i> Public Stories</a>
+                </li>
+                {{#if currentUser}} 
+                {{else}}
+                <li>
+                    <a class="btn red darken-1" href="/auth/google">
+                        <i class="fab fa-google"></i> Login with Google
+                    </a>
+                </li>
+                {{/if}}
+                <li class="divider"></li>
+                {{#if currentUser}} 
+                <li>
+                    <a href="/dashboard"><i class="fas fa-cog"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="/stories/my"><i class="fas fa-user"></i> My Stories</a>
+                </li>
+                <li>
+                    <a href="/auth/logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                </li>
                 {{/if}}
             </ul>
         </div>

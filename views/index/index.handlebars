@@ -6,6 +6,9 @@
     post stories from the best and worst of your life and choose for them to be read by the world or completly private as your
     own personal story.
 </p>
+{{#if currentUser}} 
+{{else}}
 <a class="btn red darken-1" href="/auth/google">
     <i class="fab fa-google"></i> Login with Google
 </a>
+{{/if}}

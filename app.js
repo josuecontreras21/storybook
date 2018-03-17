@@ -8,8 +8,8 @@ const passport = require('passport');
 const express = require('express');
 const path = require('path')
 
-const keys = require('./config/keys');
-const env = require('./config/env');
+const {session} = require('./config/keys');
+const {PORT, mongo} = require('./config/env');
 
 //Load Routes 
 const indexRoutes = require('./routes');
@@ -24,7 +24,7 @@ const app = express();
 mongoose.Promise = Promise;
 
 //Mongoose Connect
-mongoose.connect(env.mongo.URI)
+mongoose.connect(mongo.URI)
     .then(() => console.log('Connected to DB...'))
     .catch(err => console.log(err));
 mongoose.set('debug', true);
@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 // Passport config
 app.use(expressSession({
-    secret: keys.session.secret,
+    secret: session.secret,
     resave: false,
     saveUninitialized: false,
 }));
@@ -79,4 +79,4 @@ app.use('/stories', storiesRoutes);
 app.use('/stories/:story_id/comments', commentsRoutes);
 app.use('/stories/:story_id/users', usersRoutes);
 
-app.listen(env.PORT, () => console.log(`Server started on port ${env.PORT}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 
 const User = require('../models/user');
-const middleware = require('../middleware');
+const {isLoggedIn, ownsStory} = require('../middleware');
 
 router.get('/', (req, res)=>{
     res.redirect('/');

@@ -3,11 +3,11 @@ const router = express.Router({mergeParams: true});
 
 const Comment = require('../models/comment'); 
 const Story = require('../models/story'); 
-const middleware = require('../middleware');
+const {isLoggedIn, ownsStory} = require('../middleware');
 
 router.route('/')
 //create new comment
-.post(middleware.isLoggedIn, (req, res)=>{
+.post(isLoggedIn, (req, res)=>{
     let comment = req.body.comment;
     comment.author = req.user;
     Comment.create(comment)
@@ -26,7 +26,7 @@ router.get('/new', (req, res) => res.render('comments/new'));
 
 router.route('/:comment_id')
 //update comment 
-.put(middleware.isLoggedIn, (req, res) =>{
+.put(isLoggedIn, (req, res) =>{
     let id =  req.params.comment_id;
     let update = req.body;
     Comment.findByIdAndUpdate(id, update, {new: true}).exec()
@@ -36,7 +36,7 @@ router.route('/:comment_id')
     .catch(err => console.log(err));
 })
 //remove comment 
-.delete(middleware.isLoggedIn, (req, res)=>{
+.delete(isLoggedIn, (req, res)=>{
     Comment.remove({_id: req.params.comment_id});
     res.redirect(`/stories/${req.params.story_id}`);
 });

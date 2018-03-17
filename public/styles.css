@@ -5,7 +5,8 @@ body{
 }
 main {
   flex: 1 0 auto;
-  margin-top: 30px
+  margin-top: 30px;
+  margin-bottom: 30px
 }
 .page-footer{
   background-color: #424242;

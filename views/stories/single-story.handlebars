@@ -1,0 +1,96 @@
+<!-- Page Layout here -->
+<div class="row">
+    <div class="col s12 l8">
+
+        <!-- single story content  -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{story.title}}
+                            <a href="/stories/{{story._id}}/edit">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        </span>
+                        <span class="">{{story.created}}</span>
+                        <p class="flow-text">{{story.body}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{#if currentUser}}
+            {{#if story.allowComments}}
+            <!-- comments form  -->
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <form action="/stories/{{story._id}}/comments" method="POST">
+                                <div class="input-field col s12">
+                                    <input name="comment[text]" placeholder="Leave a comment..." id="comment" type="text" class="validate">
+                                    <label class="card-title" for="comment">Comment</label>
+                                </div>
+                                <input class="btn" type="submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <p>Comments disabled by auhtor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        {{else}}
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <p>You need to be
+                                <a href="/auth/google">logged in</a> to comment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
+        <!-- commnets content  -->
+        {{#each story.comments}}
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="chip">
+                            <img src="{{this.author.img}}" alt="Contact Person"> {{this.author.firstName}} {{this.author.lastName}}
+                        </div>
+                        <span>{{this.created}}</span>
+                        <p>{{this.text}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div class="col s12 l4">
+        <!-- Grey navigation panel -->
+        <div class="card center">
+            <div class="card-content ">
+                <h3 class="card-title">{{story.author.firstName}} {{story.author.lastName}}</h3>
+                <img class="circle responsive-img" src="{{story.author.img}}" alt="Contact Person">
+            </div>
+            <div class="card-action">
+                <a href="" class="btn">more from {{story.author.firstName}}</a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -17,13 +17,16 @@ module.exports = (passport) => {
         email: profile.emails[0].value,
         img: profile.photos[0].value.substring(0, profile.photos[0].value.indexOf('?')),
       }
+      //check for existing user
       User.findOne({googleID:profile.id})
       .then((user)=>{
         if(!user){
+        //create user
         User.create(newUser)
         .then(user => { done(null, user) })
         .catch(err => console.log(err));
         }else{
+          //return user
           done(null, user)
         }
       })

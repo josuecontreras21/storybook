@@ -6,10 +6,6 @@ userSchema = new Schema({
         type: String,
         required: true,
     },
-    username: {
-        type: String,
-        unique: true,
-    },
     email: {
         type: String,
         unique: true,
@@ -20,6 +16,6 @@ userSchema = new Schema({
     img: String,
 });
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

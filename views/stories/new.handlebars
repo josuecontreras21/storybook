@@ -1,1 +1,37 @@
-<h1>new story form</h1>
+<div class="row">
+    <div class="container">
+        <form action="/stories" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="story[title]" placeholder="title" id="tilte" type="text" class="validate">
+                    <label for="title">Title</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="story[status]" id="status">
+                        <option value="private" selected>Private</option>
+                        <option value="public">Public</option>
+                        <option value="unpublished">Unpublished</option>
+                    </select>
+                    <label for="status">Status</label>
+                </div>
+            </div>
+            <p>
+                <input name="story[allowComments]" type="checkbox" id="allowComments" value="true" />
+                <label for="allowComments">Allow Comments</label>
+            </p>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea name="story[body]" id="body" class="materialize-textarea"></textarea>
+                    <label for="body">Body</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cols 12">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

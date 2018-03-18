@@ -1,19 +1,16 @@
 <!-- Page Layout here -->
 <div class="row">
     <div class="col s12 l8">
-
         <!-- single story content  -->
         <div class="row">
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">{{story.title}}
-                            <a href="/stories/{{story._id}}/edit">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
+                        {{{editIcon story.author._id currentUser._id story._id false}}} 
                         </span>
-                        <span class="">{{story.created}}</span>
-                        <p class="flow-text">{{story.body}}</p>
+                        <p>{{formatDate story.created 'MMMM do YYYY'}}</p>
+                        <p>{{story.body}}</p>
                     </div>
                 </div>
             </div>
@@ -71,7 +68,7 @@
                         <div class="chip">
                             <img src="{{this.author.img}}" alt="Contact Person"> {{this.author.firstName}} {{this.author.lastName}}
                         </div>
-                        <span>{{this.created}}</span>
+                        <span>{{fromNow this.created}}</span>
                         <p>{{this.text}}</p>
                     </div>
                 </div>

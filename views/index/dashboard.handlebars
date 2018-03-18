@@ -1,7 +1,6 @@
 <h1>Dashboard</h1>
 <h4>Your Stories</h4>
 <hr class="divider">
-
 <table class="striped">
     <thead>
         <tr>
@@ -14,11 +13,32 @@
     <tbody>
         {{#each stories}}
         <tr>
-            <td><a href="/stories/{{this._id}}">{{this.title}}</a></td>
-            <td>{{this.created}}</td>
+            <td>
+                <a href="/stories/{{this._id}}">{{this.title}}</a>
+            </td>
+            <td>{{formatDate this.created "MMMM do YYYY"}}</td>
             <td>{{this.status}}</td>
-            <td><a class="btn" href="/stories/{{this._id}}/edit"><i class="fas fa-pencil-alt"></i> Edit</a> <a class="btn red darken-4" href="#"><i class="fas fa-times"></i> Delete</a></td>
+            <td>
+        
+                        <a class="btn left-align" href="/stories/{{this._id}}/edit">
+                            <i class="fas fa-pencil-alt"></i> Edit</a>
+
+                        <form id='delete-form' action="/stories/{{this._id}}?_method=DELETE" method="POST">
+                            <button class="btn red darken-4" type="submit"><i class="fas fa-times"></i>  Delete </button>
+                        </form>
+                    </div>
+                </div>
+                {{!--
+                <a class="btn red darken-4" href="#">
+                    <i class="fas fa-times"></i> Delete</a> --}}
+            </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+{{#if stories}} 
+{{else}}
+<p class="">You haven't created any story yet.
+    <a href="/stories/new"> Create a story</a>
+</p>
+{{/if}}

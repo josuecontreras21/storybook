@@ -8,9 +8,9 @@
                     <div class="card-image">
                         <img src="{{this.img}}">
                         <span class="card-title">{{this.title}}</span>
-                        <a href="/stories/{{this._id}}/edit" class="btn-floating halfway-fab waves-effect waves-light red">
-                            <i class="material-icons">create</i>
-                        </a>
+                        {{#if ../currentUser}}
+                            {{{editIcon this.author._id ../currentUser._id this._id}}} 
+                        {{/if}}
                     </div>
                     <div class="card-content">
                         <p>{{this.body}}</p>
@@ -25,5 +25,7 @@
             </div>
         </div>
     </div>
+    {{else}}
+    <h4>No stories found.</h4>
     {{/each}}
 </div>

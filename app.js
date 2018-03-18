@@ -4,12 +4,20 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-
 const express = require('express');
-const path = require('path')
+const path = require('path');
 
 const {session} = require('./config/keys');
 const {PORT, mongo} = require('./config/env');
+
+//Handlebars Helpers
+const {
+    truncate, 
+    formatDate,
+    fromNow,
+    select,
+    editIcon,
+} = require('./middleware/hbs');
 
 //Load Routes 
 const indexRoutes = require('./routes');
@@ -33,7 +41,16 @@ mongoose.set('debug', true);
 app.use(methodOverride('_method'));
 
 // Handlebars middleware
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+    helpers:{
+        truncate: truncate,
+        formatDate: formatDate,
+        fromNow: fromNow,
+        select: select,
+        editIcon: editIcon,
+    },
+    defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 //Serve static files
@@ -43,7 +60,6 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 //body-parsing middleware 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
 
 // Passport config
 app.use(expressSession({

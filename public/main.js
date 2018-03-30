@@ -1,5 +1,7 @@
 $(() => {
-    console.log('ready');
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+        draggable: true,
+        preventScrolling: true,
+    });
     $('select').material_select();
 });

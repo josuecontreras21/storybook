@@ -1,4 +1,3 @@
-//radom comment
 module.exports = {
     session:{
         secret: 'Ella baila la mangulina 40'

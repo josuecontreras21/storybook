@@ -8,14 +8,13 @@ const {isLoggedIn, ownsStory} = require('../middleware');
 router.route('/')
 //create new comment
 .post(isLoggedIn, (req, res)=>{
-    let comment = req.body.comment;
+    let {comment} = req.body;
     comment.author = req.user;
     Comment.create(comment)
     .then(newComment =>{
         Story.findOneAndUpdate({_id: req.params.story_id}, {$push: {comments: newComment}}, {new: true}).exec()
         .then(story => {
             res.redirect(`/stories/${req.params.story_id}`);
-            console.log(story);
         })
         .catch(err => console.log(err));
     })

@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router({mergeParams:true});
 
 const Story = require('../models/story'); 
-const Comment = require('../models/comment');
-const User = require('../models/user');
 const {isLoggedIn, ownsStory, isPublic} = require('../middleware');
 
 router.route('/')
@@ -17,7 +15,7 @@ router.route('/')
 })
 //create new story
 .post(isLoggedIn, (req, res)=>{
-    let newStory = req.body.story;
+    let {story: newStory} = req.body;
     if(!newStory.allowComments) newStory.allowComments = false;  
     newStory.author = req.user;
     Story.create(newStory)
